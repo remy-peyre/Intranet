@@ -8,10 +8,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 class DefaultController extends Controller
 {
     /**
-     * @Route("/")
+     * @Route("/toto")
      */
     public function index()
     {
-      return $this->render('index/index.html.twig');
+      return $this->render('index/home.html.twig');
     }
+
 }
