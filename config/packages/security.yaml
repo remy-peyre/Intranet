@@ -4,6 +4,9 @@ security:
     encoders:
         App\Entity\User:
             algorithm: bcrypt
+    role_hierarchy:
+        ROLE_TEACHER: ROLE_STUDENT
+        ROLE_SUPER_ADMIN: ROLE_TEACHER       
 
     providers:
         our_db_provider:

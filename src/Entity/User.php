@@ -48,7 +48,22 @@ class User implements UserInterface
      */
     private $password;
 
+    /**
+     * @ORM\Column(type="array")
+     */
+    private $roles;
+
     // other properties and methods
+
+
+   /*
+    * User constructor.
+    */
+    public function __construct()
+    {
+        $this->enabled = false;
+        $this->roles = array('ROLE_STUDENT');
+    }
 
     public function getEmail()
     {
@@ -90,19 +105,44 @@ class User implements UserInterface
         $this->password = $password;
     }
 
+    /**
+     * {@inheritdoc}
+     */
+    public function hasRole($role)
+    {
+        return in_array(strtoupper($role), $this->getRoles(), true);
+    }
+
+  /*
+   * {@inheritdoc}
+   */
+   public function addRole($role)
+   {
+       $role = strtoupper($role);
+       if ($role === static::ROLE_DEFAULT) {
+           return $this;
+       }
+
+       if (!in_array($role, $this->roles, true)) {
+           $this->roles[] = $role;
+       }
+
+       return $this;
+   }
+
+   /*
+    * @inheritDoc
+    */
+    public function getRoles()
+    {
+      return $this->roles;
+    }
+
     public function getSalt()
     {
         // The bcrypt algorithm doesn't require a separate salt.
         // You *may* need a real salt if you choose a different encoder.
         return null;
-    }
-
-    /*
-     * @inheritDoc
-     */
-    public function getRoles()
-    {
-        return array('ROLE_USER');
     }
 
     /*
@@ -115,5 +155,4 @@ class User implements UserInterface
     // other methods, including security methods like getRoles()
 }
 
-
- ?>
+?>
