@@ -20,8 +20,13 @@ class Note
     private $id;
 
     /**
-     * @ORM\ManyToOne(TargetEntity="Matiere", unique=true)
-     * @Assert\NotBlank()
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="notes")
      */
-    private $nb;
+    private $user;
+
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Matiere", inversedBy="notes")
+     */
+    private $noteByMatiere;
 }

@@ -20,8 +20,13 @@ class Matiere
     private $id;
 
     /**
-     * @ORM\OneToMany(TargetEntity="Matiere", unique=true)
-     * @Assert\NotBlank()
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="matieres")
      */
-    private $matiere;
+    private $user;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Note", mappedBy="$noteByMatiere")
+     * @ORM\JoinColumn(name="note_id", referencedColumnName="id")
+     */
+    private $noteByMatiere;
 }
