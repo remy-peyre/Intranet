@@ -29,4 +29,43 @@ class Matiere
      * @ORM\JoinColumn(name="note_id", referencedColumnName="id")
      */
     private $noteByMatiere;
+
+    public function __toString()
+    {
+        return $this->getnoteByMatiere();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param mixed $user
+     */
+    public function setUser($user)
+    {
+        $this->user = $user;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getNoteByMatiere()
+    {
+        return $this->noteByMatiere;
+    }
+
+    /**
+     * @param mixed $noteByMatiere
+     */
+    public function setNoteByMatiere($noteByMatiere)
+    {
+        $this->noteByMatiere = $noteByMatiere;
+    }
+
+
 }
