@@ -25,15 +25,32 @@ class Matiere
     private $user;
 
     /**
-     * @ORM\OneToMany(targetEntity="Note", mappedBy="$noteByMatiere")
-     * @ORM\JoinColumn(name="note_id", referencedColumnName="id")
+     * @ORM\Column(type="string", length=255, unique=true)
      */
-    private $noteByMatiere;
+    private $nomMatiere;
+
 
     public function __toString()
     {
-        return $this->getnoteByMatiere();
+        return $this->getNomMatiere();
     }
+
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param mixed $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
 
     /**
      * @return mixed
@@ -54,18 +71,17 @@ class Matiere
     /**
      * @return mixed
      */
-    public function getNoteByMatiere()
+    public function getNomMatiere()
     {
-        return $this->noteByMatiere;
+        return $this->nomMatiere;
     }
 
     /**
-     * @param mixed $noteByMatiere
+     * @param mixed $nomMatiere
      */
-    public function setNoteByMatiere($noteByMatiere)
+    public function setNomMatiere($nomMatiere)
     {
-        $this->noteByMatiere = $noteByMatiere;
+        $this->nomMatiere = $nomMatiere;
     }
-
 
 }

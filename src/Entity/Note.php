@@ -24,15 +24,30 @@ class Note
      */
     private $user;
 
-
     /**
-     * @ORM\ManyToOne(targetEntity="Matiere", inversedBy="notes")
+     * @ORM\Column(type="string", length=255)
      */
-    private $noteByMatiere;
+    private $note;
 
     public function __toString()
     {
-        return $this->getnoteByMatiere();
+        return $this->getUser()->getUsername();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param mixed $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
     }
 
     /**
@@ -54,18 +69,17 @@ class Note
     /**
      * @return mixed
      */
-    public function getNoteByMatiere()
+    public function getNote()
     {
-        return $this->noteByMatiere;
+        return $this->note;
     }
 
     /**
-     * @param mixed $noteByMatiere
+     * @param mixed $note
      */
-    public function setNoteByMatiere($noteByMatiere)
+    public function setNote($note)
     {
-        $this->noteByMatiere = $noteByMatiere;
+        $this->note = $note;
     }
-
 
 }
