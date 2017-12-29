@@ -8,7 +8,7 @@ easy_admin:
             - label: 'Listes des matières'
               children: ['Matiere']
     entities:
-#        # List the entity class name you want to manage
+       # List the entity class name you want to manage
         User:
             class: App\Entity\User
 
