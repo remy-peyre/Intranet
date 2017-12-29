@@ -29,6 +29,11 @@ class Note
      */
     private $note;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $commentaire;
+
     public function __toString()
     {
         return $this->getUser()->getUsername();
@@ -80,6 +85,22 @@ class Note
     public function setNote($note)
     {
         $this->note = $note;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCommentaire()
+    {
+        return $this->commentaire;
+    }
+
+    /**
+     * @param mixed $commentaire
+     */
+    public function setCommentaire($commentaire)
+    {
+        $this->commentaire = $commentaire;
     }
 
 }

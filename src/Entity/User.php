@@ -14,6 +14,9 @@ use Symfony\Component\Security\Core\User\UserInterface;
  */
 class User implements UserInterface
 {
+    const ROLE_DEFAULT = 'ROLE_STUDENT';
+
+    const ROLE_SUPER_ADMIN = 'ROLE_SUPER_ADMIN';
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
@@ -169,6 +172,20 @@ class User implements UserInterface
     {
       return $this->roles;
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setRoles(array $roles)
+    {
+        $this->roles = array();
+
+        foreach ($roles as $role) {
+            $this->addRole($role);
+        }
+    }
+
+
 
     public function getSalt()
     {
