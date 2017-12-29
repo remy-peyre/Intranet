@@ -17,6 +17,7 @@ class User implements UserInterface
     const ROLE_DEFAULT = 'ROLE_STUDENT';
 
     const ROLE_SUPER_ADMIN = 'ROLE_SUPER_ADMIN';
+    
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")

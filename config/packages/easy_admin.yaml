@@ -1,6 +1,22 @@
 easy_admin:
+    design:
+        menu:
+            - label: 'Utilisateur'
+              children: ['User', 'Professeurs']
+            - label: 'Listes des notes'
+              children: ['Note']
+            - label: 'Listes des matières'
+              children: ['Matiere']
     entities:
 #        # List the entity class name you want to manage
-        - App\Entity\Matiere
-        - App\Entity\Note
-        - App\Entity\User
+        User:
+            class: App\Entity\User
+
+        Matiere:
+            class: App\Entity\Matiere
+
+        Note:
+            class: App\Entity\Note
+
+        Professeurs:
+            class: App\Entity\User
