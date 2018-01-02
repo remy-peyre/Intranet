@@ -1,7 +1,52 @@
 {% extends 'index.html.twig' %}
 
 {% block body %}
-  <h1> hakan </h1>
+
+  {% for role in app.user.roles if role == 'ROLE_STUDENT' %}
+    <h3 class="text-center">Votre compte Etudiant</h3>
+
+        <h2>Mes matières</h2>
+        {% for matiere  in matieres %}
+        <div  >
+            <div>
+                 {{ matiere }}
+            <div>
+        </div>
+        {% endfor %}
+
+        <hr>
+
+        <h2>Toutes matières</h2>
+        {% for toutes  in toutes_matieres %}
+        <div>
+            <div>
+                 {{ toutes }}
+            <div>
+        </div>
+        {% endfor %}
+
+        <h2>Mes notes</h2>
+        {% for note  in notes %}
+        <div>
+            <div>
+                {{ note.note}}
+                {{ note.commentaire }}
+                {{ note.matieres.nomMatiere }}
+            <div>
+        </div>
+        {% endfor %}
+
+
+
+  {% endfor %}
+
+
+
+  {% for role in app.user.roles if role == 'ROLE_TEACHER' %}
+    <h3 class="text-center">Votre compte Professeurs</h3>
+
+
+  {% endfor %}
 
 <!--
   - Faire la partie pour les Etudiant, Profs, Administration

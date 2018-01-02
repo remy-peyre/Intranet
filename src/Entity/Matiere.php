@@ -13,7 +13,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 class Matiere
 {
     /**
-    * @ORM\Id
+     * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
@@ -21,13 +21,20 @@ class Matiere
 
     /**
      * @ORM\ManyToOne(targetEntity="User", inversedBy="matieres")
+     *
      */
     private $user;
 
     /**
      * @ORM\Column(type="string", length=255, unique=true)
+     *
      */
     private $nomMatiere;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Note", mappedBy="matieres", cascade={"remove","persist"})
+     */
+    protected $note;
 
 
     public function __toString()
@@ -82,6 +89,31 @@ class Matiere
     public function setNomMatiere($nomMatiere)
     {
         $this->nomMatiere = $nomMatiere;
+    }
+
+
+    /**
+     * Get the value of Note
+     *
+     * @return mixed
+     */
+    public function getNote()
+    {
+        return $this->note;
+    }
+
+    /**
+     * Set the value of Note
+     *
+     * @param mixed note
+     *
+     * @return self
+     */
+    public function setNote($note)
+    {
+        $this->note = $note;
+
+        return $this;
     }
 
 }

@@ -59,13 +59,11 @@ class User implements UserInterface
 
     /**
      * @ORM\OneToMany(targetEntity="Matiere", mappedBy="user")
-     * @ORM\JoinColumn(name="matiere_id", referencedColumnName="id")
      */
     private $matieres;
 
     /**
      * @ORM\OneToMany(targetEntity="Note", mappedBy="user")
-     * @ORM\JoinColumn(name="note_id", referencedColumnName="id")
      */
     private $notes;
 

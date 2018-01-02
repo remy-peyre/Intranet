@@ -13,7 +13,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 class Note
 {
     /**
-    * @ORM\Id
+     * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
@@ -33,6 +33,14 @@ class Note
      * @ORM\Column(type="string", length=255)
      */
     private $commentaire;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Matiere", inversedBy="note", cascade={"persist"})
+     * @ORM\JoinColumn(name="matiere_id", referencedColumnName="id")
+     */
+    protected $matieres;
+
+
 
     public function __toString()
     {
@@ -101,6 +109,56 @@ class Note
     public function setCommentaire($commentaire)
     {
         $this->commentaire = $commentaire;
+    }
+
+
+    /**
+     * Get the value of Matiere
+     *
+     * @return mixed
+     */
+    public function getMatiere()
+    {
+        return $this->matiere;
+    }
+
+    /**
+     * Set the value of Matiere
+     *
+     * @param mixed matiere
+     *
+     * @return self
+     */
+    public function setMatiere($matiere)
+    {
+        $this->matiere = $matiere;
+
+        return $this;
+    }
+
+
+    /**
+     * Get the value of Matieres
+     *
+     * @return mixed
+     */
+    public function getMatieres()
+    {
+        return $this->matieres;
+    }
+
+    /**
+     * Set the value of Matieres
+     *
+     * @param mixed matieres
+     *
+     * @return self
+     */
+    public function setMatieres($matieres)
+    {
+        $this->matieres = $matieres;
+
+        return $this;
     }
 
 }
