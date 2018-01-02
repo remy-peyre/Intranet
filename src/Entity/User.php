@@ -56,6 +56,11 @@ class User implements UserInterface
      */
     private $roles;
 
+    /**
+     * @ORM\Column(name="sortRole", type="string", length=100)
+     */
+    private $sortRole;
+
 
     /**
      * @ORM\OneToMany(targetEntity="Matiere", mappedBy="user")
@@ -80,6 +85,7 @@ class User implements UserInterface
     {
         $this->enabled = false;
         $this->roles = array('ROLE_STUDENT');
+        $this->sortRole = "ROLE_STUDENT";
     }
 
     /**
@@ -233,6 +239,31 @@ class User implements UserInterface
     }
 
 
+
+
+    /**
+     * Get the value of Sort Role
+     *
+     * @return mixed
+     */
+    public function getSortRole()
+    {
+        return $this->sortRole;
+    }
+
+    /**
+     * Set the value of Sort Role
+     *
+     * @param mixed sortRole
+     *
+     * @return self
+     */
+    public function setSortRole($sortRole)
+    {
+        $this->sortRole = $sortRole;
+
+        return $this;
+    }
 
 }
 

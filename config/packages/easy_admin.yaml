@@ -11,12 +11,42 @@ easy_admin:
        # List the entity class name you want to manage
         User:
             class: App\Entity\User
+            form:  # <-- 'form' is applied to both 'new' and 'edit' views
+                fields:
+                    - { property: 'email', type: 'email'}
+                    - { property: 'username', type: 'text'}
+                    - { property: 'roles'}
+                    - { property: 'sortRole', type: 'text' }
+                    - { property: 'matieres' }
+            list:
+                dql_filter: "entity.sortRole = 'ROLE_STUDENT'"
+                fields:
+                    - { property: 'username', label: 'Utisateurs' }
+                    - { property: 'email', label: 'Email' }
+                    - { property: 'roles', label: 'Roles' }
+                    - { property: 'matieres', label: 'Matieres' }
+                    - { property: 'notes', label: 'Notes' }
+
+
 
         Matiere:
             class: App\Entity\Matiere
-
+            list:
+                fields:
+                    - { property: 'nomMatiere', label: 'Matiere' }
+                    - { property: 'user', label: 'Utilisateur' }
         Note:
             class: App\Entity\Note
+            list:
+                fields:
+                    - { property: 'user', label: 'Etudiant' }
+                    - { property: 'note', label: 'Note' }
+                    - { property: 'commentaire', label: 'Commentaire' }
+                    - { property: 'matieres', label: 'Matieres' }
+
 
         Professeurs:
             class: App\Entity\User
+            list:
+                dql_filter: "entity.sortRole = 'ROLE_TEACHER'"
+                fields: ['email', 'username','roles', 'matieres']
