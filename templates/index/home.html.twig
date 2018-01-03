@@ -43,6 +43,24 @@
   {% for role in app.user.roles if role == 'ROLE_TEACHER' %}
     <h3 class="text-center">Votre compte Professeurs</h3>
 
+    <h2>Mes cours</h2>
+    {% for matiere  in matieres_prof %}
+    <div>
+        <div>
+            {{ matiere }}
+        <div>
+    </div>
+
+
+    {% endfor %}
+
+    <h2>Mettre une note</h2>
+
+
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    {{ form_end(form) }}
+
 
   {% endfor %}
 
