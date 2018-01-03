@@ -20,69 +20,70 @@ class DefaultController extends Controller
      */
     public function index()
     {
+        $em = $this->getDoctrine()->getEntityManager();
 
-      $em = $this->getDoctrine()->getEntityManager();
+        $userConnected = $this->get('security.token_storage')->getToken()->getUser();
 
-      $userConnected = $this->get('security.token_storage')->getToken()->getUser();
+        //var_dump($userConnected);
 
-      //var_dump($userConnected);
+        $toutesMatiere = $em->getRepository(Matiere::class)->findAll();
 
-      $toutesMatiere = $em->getRepository(Matiere::class)->findAll();
+        $matiere = $em->getRepository(Matiere::class)->findBy(['user' => $userConnected]);
 
-      $matiere = $em->getRepository(Matiere::class)->findBy(['user' => $userConnected]);
+        $infoUser = $em->getRepository(User::class)->findBy(['id' => $userConnected]);
 
-      $matieress = $em->getRepository(User::class)->findBy(['id' => $userConnected]);
 
-      $note = $em->getRepository(Note::class)->findBy(['user' => $userConnected]);
+        $note = $em->getRepository(Note::class)->findBy(['user' => $userConnected]);
 
-      $matiereProf = $em->getRepository(Matiere::class)->findBy(['user' => $userConnected]);
+        $matiereProf = $em->getRepository(Matiere::class)->findBy(['user' => $userConnected]);
 
-      //var_dump($matiere);
+        //var_dump($matiere);
 
-      return $this->render('index/home.html.twig', [
+        return $this->render('index/home.html.twig', [
         'matieres' => $matiere,
         'toutes_matieres' => $toutesMatiere,
         'notes' => $note,
         'matieres_prof' => $matiereProf,
-        'user' => $matieress
-      ]);
+        'users' => $infoUser
+        ]);
     }
+
     /**
      * @Route("/add")
      */
     public function new(Request $request)
-{
-    // just setup a fresh $task object (remove the dummy data)
-    $note = new Note();
+    {
+        // just setup a fresh $task object (remove the dummy data)
+        $note = new Note();
 
-    $userConnected = $this->get('security.token_storage')->getToken()->getUser();
+        $userConnected = $this->get('security.token_storage')->getToken()->getUser();
 
-    $form = $this->createFormBuilder($note)
-        ->add('user')
-        ->add('note', IntegerType::class)
-        ->add('commentaire', TextType::class)
-        ->add('matieres' )
-        ->add('save', SubmitType::class, array('label' => 'Ajouter la note'))
-        ->getForm();
+        $form = $this->createFormBuilder($note)
+            ->add('user')
+            ->add('note', IntegerType::class)
+            ->add('commentaire', TextType::class)
+            ->add('matieres' )
+            ->add('save', SubmitType::class, array('label' => 'Ajouter la note'))
+            ->getForm();
 
-    $form->handleRequest($request);
+        $form->handleRequest($request);
 
-    if ($form->isSubmitted() && $form->isValid()) {
-        // $form->getData() holds the submitted values
-        // but, the original `$task` variable has also been updated
-        $note = $form->getData();
+        if ($form->isSubmitted() && $form->isValid()) {
+            // $form->getData() holds the submitted values
+            // but, the original `$task` variable has also been updated
+            $note = $form->getData();
 
-        // ... perform some action, such as saving the task to the database
-        // for example, if Task is a Doctrine entity, save it!
-         $em = $this->getDoctrine()->getManager();
-         $em->persist($note);
-         $em->flush();
+            // ... perform some action, such as saving the task to the database
+            // for example, if Task is a Doctrine entity, save it!
+             $em = $this->getDoctrine()->getManager();
+             $em->persist($note);
+             $em->flush();
 
-        return $this->redirectToRoute('home');
+            return $this->redirectToRoute('home');
+        }
+
+        return $this->render('index/new.html.twig', array(
+            'form' => $form->createView(),
+        ));
     }
-
-    return $this->render('index/new.html.twig', array(
-        'form' => $form->createView(),
-    ));
-}
 }

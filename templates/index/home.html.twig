@@ -65,14 +65,14 @@
 
             </div>
 
-            {% for users  in user %}
+            {% for user  in users %}
 
             <div class="profile">
                 <div class="center_profile">
                     <img class="size_picture_profile" src="assets/image/profile.png">
-                    <p>{{ users.username }}</p>
-                    <p>Email : {{users.email}}</p>
-                    <p>Role : {{users.sortRole}}</p>
+                    <p>{{ user.username }}</p>
+                    <p>{{user.email}}</p>
+                    <p>{{ user.sortRole}}</p>
                 </div>
             </div>
             {% endfor %}
