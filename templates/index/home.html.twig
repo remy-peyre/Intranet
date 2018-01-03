@@ -3,24 +3,22 @@
 {% block body %}
 
   {% for role in app.user.roles if role == 'ROLE_STUDENT' %}
-    <h3 class="text-center">Votre compte Etudiant</h3>
+    <h3 class="text-center">Votre espace Interpool</h3>
+
+        <h2>Toutes les matières</h2>
+        {% for toutes  in toutes_matieres %}
+        <div>
+            <div>
+                {{ toutes }}
+            <div>
+        </div>
+        {% endfor %}
 
         <h2>Mes matières</h2>
         {% for matiere  in matieres %}
         <div  >
             <div>
                  {{ matiere }}
-            <div>
-        </div>
-        {% endfor %}
-
-        <hr>
-
-        <h2>Toutes matières</h2>
-        {% for toutes  in toutes_matieres %}
-        <div>
-            <div>
-                 {{ toutes }}
             <div>
         </div>
         {% endfor %}
