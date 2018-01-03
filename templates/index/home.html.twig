@@ -76,57 +76,6 @@
             </div>
         </div>
 
-
-        {#
-        <h3>Mes notes</h3>
-        {% for note  in notes %}
-        <div>
-            <div>
-                {{ note.note}}
-                {{ note.commentaire }}
-                {{ note.matieres.nomMatiere }}
-            <div>
-        </div>
-        {% endfor %}
-        #}
-
-
     {% endfor %}
 
-
-    {#
-    {% for role in app.user.roles if role == 'ROLE_TEACHER' %}
-    <h3 class="text-center">Votre compte Professeurs</h3>
-
-    <h2>Mes cours</h2>
-    {% for matiere  in matieres_prof %}
-    <div>
-        <div>
-            {{ matiere }}
-        <div>
-    </div>
-
-
-    {% endfor %}
-
-    <h2>Mettre une note</h2>
-
-
-    {{ form_start(form) }}
-    {{ form_widget(form) }}
-    {{ form_end(form) }}
-
-
-    {% endfor %}
-    #}
-
-<!--
-  - Faire la partie pour les Etudiant, Profs, Administration
-
-  - IsGranted pour check le type d'utilisateur connecter
-
-  - Verification sécu si possible au niveau des liens ?
-
-
--->
 {% endblock %}

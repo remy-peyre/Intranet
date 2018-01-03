@@ -8,14 +8,14 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 
 class DefaultController extends Controller
 {
     /**
-     * @Route("/")
+     * @Route("/", name="home")
      */
     public function index()
     {
@@ -43,16 +43,20 @@ class DefaultController extends Controller
         'matieres_prof' => $matiereProf
       ]);
     }
-
+    /**
+     * @Route("/add")
+     */
     public function new(Request $request)
 {
     // just setup a fresh $task object (remove the dummy data)
-    $task = new Note();
+    $note = new Note();
 
-    $form = $this->createFormBuilder($task)
-        ->add('task', TextType::class)
-        ->add('dueDate', DateType::class)
-        ->add('save', SubmitType::class, array('label' => 'Create Task'))
+    $form = $this->createFormBuilder($note)
+        ->add('user')
+        ->add('note', IntegerType::class)
+        ->add('commentaire', TextType::class)
+        ->add('matieres')
+        ->add('save', SubmitType::class, array('label' => 'Ajouter la note'))
         ->getForm();
 
     $form->handleRequest($request);
@@ -60,18 +64,18 @@ class DefaultController extends Controller
     if ($form->isSubmitted() && $form->isValid()) {
         // $form->getData() holds the submitted values
         // but, the original `$task` variable has also been updated
-        $task = $form->getData();
+        $note = $form->getData();
 
         // ... perform some action, such as saving the task to the database
         // for example, if Task is a Doctrine entity, save it!
-        // $em = $this->getDoctrine()->getManager();
-        // $em->persist($task);
-        // $em->flush();
+         $em = $this->getDoctrine()->getManager();
+         $em->persist($note);
+         $em->flush();
 
-        return $this->redirectToRoute('task_success');
+        return $this->redirectToRoute('home');
     }
 
-    return $this->render('index/home.html.twig', array(
+    return $this->render('index/new.html.twig', array(
         'form' => $form->createView(),
     ));
 }
