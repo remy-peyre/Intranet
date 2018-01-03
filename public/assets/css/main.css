@@ -58,15 +58,6 @@ h3{
     border-radius: 5px;
     color: #0d6aad;
 }
-.profile{
-    display: flex;
-    flex-direction: column;
-    width: 20%;
-    border: 1px solid;
-    margin-right: 15px;
-    padding: 15px;
-}
-
 table.blueTable {
     border: 1px solid #1C6EA4;
     background-color: #EEEEEE;
@@ -107,4 +98,26 @@ table.blueTable tfoot {
     background: -webkit-linear-gradient(top, #dcebf7 0%, #d4e6f6 66%, #D0E4F5 100%);
     background: linear-gradient(to bottom, #dcebf7 0%, #d4e6f6 66%, #D0E4F5 100%);
     border-top: 2px solid #444444;
+}
+
+.profile{
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+    border: 1px solid;
+    margin-right: 15px;
+    padding: 15px;
+}
+.size_picture_profile{
+    width: 100%;
+    border-radius: 50%;
+    margin-bottom: 15px;
+}
+.center_profile{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.center_profile p {
+    color: #0d6aad;
 }
