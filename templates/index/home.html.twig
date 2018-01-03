@@ -74,6 +74,17 @@
                     <p>{{user.email}}</p>
                     <p>{{ user.sortRole}}</p>
                 </div>
+
+                {% if is_granted('ROLE_TEACHER') %}
+                    <div class="center_button_add">
+                        <a class="add_note" href="{{ path('add') }}">
+                            <button type="button" class="btn btn-success btn-sm">
+                                <span class="glyphicon glyphicon-plus"></span> Ajouter une note
+                            </button>
+                        </a>
+                    </div>
+                {% endif %}
+
             </div>
             {% endfor %}
         </div>

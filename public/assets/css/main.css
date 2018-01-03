@@ -121,3 +121,7 @@ table.blueTable tfoot {
 .center_profile p {
     color: #0d6aad;
 }
+.center_button_add{
+    display: flex;
+    justify-content: center;
+}
