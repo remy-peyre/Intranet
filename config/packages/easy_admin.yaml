@@ -15,6 +15,7 @@ easy_admin:
                 fields:
                     - { property: 'email', type: 'email'}
                     - { property: 'username', type: 'text'}
+                    - { property: 'password', type: 'password'}
                     - { property: 'roles'}
                     - { property: 'sortRole', type: 'text' }
                     - { property: 'matieres' }
@@ -31,10 +32,15 @@ easy_admin:
 
         Matiere:
             class: App\Entity\Matiere
+            form:  # <-- 'form' is applied to both 'new' and 'edit' views
+                fields:
+                    - { property: 'user'}
+                    - { property: 'nomMatiere', type: 'text', label: Matière}
             list:
                 fields:
                     - { property: 'nomMatiere', label: 'Matiere' }
-                    - { property: 'user', label: 'Utilisateur' }
+                    - { property: 'user', label: 'Professeurs' }
+
         Note:
             class: App\Entity\Note
             list:
