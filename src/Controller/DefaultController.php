@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Matiere;
 use App\Entity\Note;
+use App\Entity\User;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
@@ -30,6 +31,8 @@ class DefaultController extends Controller
 
       $matiere = $em->getRepository(Matiere::class)->findBy(['user' => $userConnected]);
 
+      $matieress = $em->getRepository(User::class)->findBy(['id' => $userConnected]);
+
       $note = $em->getRepository(Note::class)->findBy(['user' => $userConnected]);
 
       $matiereProf = $em->getRepository(Matiere::class)->findBy(['user' => $userConnected]);
@@ -40,7 +43,8 @@ class DefaultController extends Controller
         'matieres' => $matiere,
         'toutes_matieres' => $toutesMatiere,
         'notes' => $note,
-        'matieres_prof' => $matiereProf
+        'matieres_prof' => $matiereProf,
+        'user' => $matieress
       ]);
     }
     /**
@@ -51,11 +55,13 @@ class DefaultController extends Controller
     // just setup a fresh $task object (remove the dummy data)
     $note = new Note();
 
+    $userConnected = $this->get('security.token_storage')->getToken()->getUser();
+
     $form = $this->createFormBuilder($note)
         ->add('user')
         ->add('note', IntegerType::class)
         ->add('commentaire', TextType::class)
-        ->add('matieres')
+        ->add('matieres' )
         ->add('save', SubmitType::class, array('label' => 'Ajouter la note'))
         ->getForm();
 
