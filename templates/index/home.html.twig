@@ -1,29 +1,81 @@
 {% extends 'index.html.twig' %}
 
 {% block body %}
-
-  {% for role in app.user.roles if role == 'ROLE_STUDENT' %}
-    <h3 class="text-center">Votre espace Interpool</h3>
-
-        <h2>Toutes les matières</h2>
-        {% for toutes  in toutes_matieres %}
-        <div>
-            <div>
-                {{ toutes }}
-            <div>
+    {% for role in app.user.roles if role == 'ROLE_STUDENT' or role == 'ROLE_TEACHER'%}
+        <div class="navbar_home">
+            <div class="title">
+                <h2 class="size_title">Votre espace Interpool</h2>
+            </div>
+            <div class="logout">
+                <a href="{{ path('logout') }}">
+                    <button type="button" class="btn btn-default btn-sm">
+                        <span class="glyphicon glyphicon-log-out"></span> Log out
+                    </button>
+                </a>
+            </div>
         </div>
-        {% endfor %}
 
-        <h2>Mes matières</h2>
-        {% for matiere  in matieres %}
-        <div  >
-            <div>
-                 {{ matiere }}
-            <div>
+        <div class="content_size">
+            <div class="all_info">
+                <div class="info_part">
+                    <h3>Toutes les matières</h3>
+                    <div class="show_subject">
+                        {% for toutes  in toutes_matieres %}
+                            <span class="custom_subjects">
+                                {{ toutes }}
+                            </span>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <div class="info_part">
+                    <h3>Mes matières</h3>
+                    <div class="show_subject">
+                        {% for matiere  in matieres %}
+                            <span class="custom_subjects">
+                                {{ matiere }}
+                            </span>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <div class="info_part">
+                    <h3>Mes notes</h3>
+                    <div class="show_subject">
+                        <table class="blueTable">
+                            <thead>
+                            <tr>
+                                <th>Matière</th>
+                                <th>Note</th>
+                                <th>Commentaire</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                                    {% for note  in notes %}
+                                <tr>
+                                        <td>{{ note.matieres.nomMatiere }}</td>
+                                        <td>{{ note.note}}</td>
+                                        <td>{{ note.commentaire }}</td>
+                                </tr>
+                                    {% endfor %}
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="profile">
+                profile
+            </div>
         </div>
-        {% endfor %}
 
-        <h2>Mes notes</h2>
+
+        {#
+        <h3>Mes notes</h3>
         {% for note  in notes %}
         <div>
             <div>
@@ -33,14 +85,14 @@
             <div>
         </div>
         {% endfor %}
+        #}
 
 
-
-  {% endfor %}
-
+    {% endfor %}
 
 
-  {% for role in app.user.roles if role == 'ROLE_TEACHER' %}
+    {#
+    {% for role in app.user.roles if role == 'ROLE_TEACHER' %}
     <h3 class="text-center">Votre compte Professeurs</h3>
 
     <h2>Mes cours</h2>
@@ -62,7 +114,8 @@
     {{ form_end(form) }}
 
 
-  {% endfor %}
+    {% endfor %}
+    #}
 
 <!--
   - Faire la partie pour les Etudiant, Profs, Administration

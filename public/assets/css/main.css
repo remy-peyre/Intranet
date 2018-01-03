@@ -1,0 +1,110 @@
+body {
+    background-color: #e0dede;
+}
+.navbar_home{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
+    background-color: #0d6aad;
+    color: white;
+    margin-bottom: 30px;
+}
+.title{
+    display: flex;
+    width: 62%;
+    justify-content: flex-end;
+}
+.size_title{
+    margin: 0;
+}
+.logout{
+    margin-right: 15px;
+}
+
+.content_size{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+h3{
+    color: #0d6aad;
+}
+.all_info{
+    display: flex;
+    flex-direction: column;
+    width: 75%;
+}
+.info_part{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border: 1px solid;
+    margin-left: 15px;
+    padding: 15px;
+    margin-bottom: 30px;
+}
+.info_part h3{
+    margin: 0px;
+}
+.show_subject{
+    margin-top: 10px;
+}
+.custom_subjects{
+    padding: 5px;
+    border: none;
+    background-color: white;
+    margin-right: 5px;
+    border-radius: 5px;
+    color: #0d6aad;
+}
+.profile{
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+    border: 1px solid;
+    margin-right: 15px;
+    padding: 15px;
+}
+
+table.blueTable {
+    border: 1px solid #1C6EA4;
+    background-color: #EEEEEE;
+    width: 100%;
+    text-align: left;
+    border-collapse: collapse;
+}
+table.blueTable td, table.blueTable th {
+    border: 1px solid #AAAAAA;
+    padding: 3px 2px;
+}
+table.blueTable tbody td {
+    font-size: 13px;
+}
+table.blueTable tr:nth-child(even) {
+    background: #D0E4F5;
+}
+table.blueTable thead {
+    background: #0d6aad;
+    border-bottom: 2px solid #444444;
+}
+table.blueTable thead th {
+    font-size: 15px;
+    font-weight: bold;
+    color: #FFFFFF;
+    border-left: 2px solid #D0E4F5;
+}
+table.blueTable thead th:first-child {
+    border-left: none;
+}
+
+table.blueTable tfoot {
+    font-size: 14px;
+    font-weight: bold;
+    color: #FFFFFF;
+    background: #D0E4F5;
+    background: -moz-linear-gradient(top, #dcebf7 0%, #d4e6f6 66%, #D0E4F5 100%);
+    background: -webkit-linear-gradient(top, #dcebf7 0%, #d4e6f6 66%, #D0E4F5 100%);
+    background: linear-gradient(to bottom, #dcebf7 0%, #d4e6f6 66%, #D0E4F5 100%);
+    border-top: 2px solid #444444;
+}
