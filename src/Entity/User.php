@@ -238,9 +238,6 @@ class User implements UserInterface
         $this->notes = $notes;
     }
 
-
-
-
     /**
      * Get the value of Sort Role
      *
@@ -264,7 +261,6 @@ class User implements UserInterface
 
         return $this;
     }
-
 }
 
 ?>

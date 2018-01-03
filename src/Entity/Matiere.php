@@ -21,7 +21,6 @@ class Matiere
 
     /**
      * @ORM\ManyToOne(targetEntity="User", inversedBy="matieres")
-     *
      */
     private $user;
 
@@ -35,7 +34,6 @@ class Matiere
      * @ORM\OneToMany(targetEntity="Note", mappedBy="matieres", cascade={"remove","persist"})
      */
     protected $note;
-
 
     public function __toString()
     {
@@ -115,5 +113,4 @@ class Matiere
 
         return $this;
     }
-
 }
