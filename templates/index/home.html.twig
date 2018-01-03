@@ -51,15 +51,13 @@
                             </tr>
                             </thead>
                             <tbody>
-
-                                    {% for note  in notes %}
-                                <tr>
+                                {% for note  in notes %}
+                                    <tr>
                                         <td>{{ note.matieres.nomMatiere }}</td>
                                         <td>{{ note.note}}</td>
                                         <td>{{ note.commentaire }}</td>
-                                </tr>
-                                    {% endfor %}
-
+                                    </tr>
+                                {% endfor %}
                             </tbody>
                         </table>
                     </div>
