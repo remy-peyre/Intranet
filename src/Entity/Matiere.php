@@ -9,7 +9,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\MatiereRepository")
  */
 class Matiere
 {
