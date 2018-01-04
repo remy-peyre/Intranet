@@ -1,12 +1,9 @@
 {% extends 'index.html.twig' %}
 
 {% block body %}
-
-  {% for role in app.user.roles if role == 'ROLE_TEACHER'%}
-
-      {{ form_start(form) }}
-      {{ form_widget(form) }}
-      {{ form_end(form) }}
-
-    {% endfor %}
+    {% if is_granted('ROLE_TEACHER') %}
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        {{ form_end(form) }}
+    {% endif %}
 {% endblock %}
