@@ -85,6 +85,16 @@
                     </div>
                 {% endif %}
 
+                {#{% if is_granted('ROLE_STUDENT') %}
+                    <div class="center_button_add">
+                        <a class="add_note" href="{{ path('register-subject') }}">
+                            <button type="button" class="btn btn-success btn-sm">
+                                <span class="glyphicon glyphicon-plus"></span> S'inscrire à une matière
+                            </button>
+                        </a>
+                    </div>
+                {% endif %}
+                #}
             </div>
             {% endfor %}
         </div>
