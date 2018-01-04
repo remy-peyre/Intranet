@@ -125,3 +125,8 @@ table.blueTable tfoot {
     display: flex;
     justify-content: center;
 }
+
+/* ------- admin ----------*/
+.button_admin{
+    margin-top: 25%;
+}

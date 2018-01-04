@@ -87,9 +87,9 @@ class DefaultController extends Controller
 
 
     /**
-     * @Route("/register-subject")
+     * @Route("/register_subject", name="register_subject")
      */
-    public function registerSubject(Request $request)
+    public function subject(Request $request)
     {
 
 

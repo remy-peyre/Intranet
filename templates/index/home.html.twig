@@ -42,6 +42,9 @@
                     </div>
                 </div>
 
+                <!-- teacher = list student by subject
+                student = list note by subject and commentary
+                 -->
                 <div class="info_part">
                     {% for user  in users if user.sortRole == 'ROLE_STUDENT'%}
                         <h3>Mes notes</h3>
@@ -97,40 +100,50 @@
 
             </div>
 
+            <!-- teacher = list student by subject
+                profile part
+            -->
             {% for user  in users %}
+                <div class="profile">
+                    <div class="center_profile">
+                        <img class="size_picture_profile" src="assets/image/profile.png">
+                        <p>{{ user.username }}</p>
+                        <p>{{user.email}}</p>
+                        <p>{{ user.sortRole}}</p>
+                    </div>
 
-            <div class="profile">
-                <div class="center_profile">
-                    <img class="size_picture_profile" src="assets/image/profile.png">
-                    <p>{{ user.username }}</p>
-                    <p>{{user.email}}</p>
-                    <p>{{ user.sortRole}}</p>
+                    {% if is_granted('ROLE_TEACHER') %}
+                        <div class="center_button_add">
+                            <a class="add_note" href="{{ path('add') }}">
+                                <button type="button" class="btn btn-success btn-sm">
+                                    <span class="glyphicon glyphicon-plus"></span> Ajouter une note
+                                </button>
+                            </a>
+                        </div>
+                    {% endif %}
+
+                    {% if user.sortRole == 'ROLE_STUDENT' %}
+                        <div class="center_button_add">
+                            <a class="add_note" href="{{ path('register_subject') }}">
+                                <button type="button" class="btn btn-primary btn-sm">
+                                    <span class="glyphicon glyphicon-plus"></span> S'inscrire à une matière
+                                </button>
+                            </a>
+                        </div>
+                    {% endif %}
                 </div>
-
-                {% if is_granted('ROLE_TEACHER') %}
-                    <div class="center_button_add">
-                        <a class="add_note" href="{{ path('add') }}">
-                            <button type="button" class="btn btn-success btn-sm">
-                                <span class="glyphicon glyphicon-plus"></span> Ajouter une note
-                            </button>
-                        </a>
-                    </div>
-                {% endif %}
-
-                {#{% if is_granted('ROLE_STUDENT') %}
-                    <div class="center_button_add">
-                        <a class="add_note" href="{{ path('register-subject') }}">
-                            <button type="button" class="btn btn-success btn-sm">
-                                <span class="glyphicon glyphicon-plus"></span> S'inscrire à une matière
-                            </button>
-                        </a>
-                    </div>
-                {% endif %}
-                #}
-            </div>
             {% endfor %}
         </div>
-
     {% endfor %}
+
+    {% if is_granted('ROLE_TEACHER') %}
+        <div class="center_button_add button_admin">
+            <a class="add_note" href="{{ path('admin') }}">
+                <button type="button" class="btn btn-primary btn-sm">
+                    <span class="glyphicon glyphicon-log-out"></span> Interface administrateur
+                </button>
+            </a>
+        </div>
+    {% endif %}
 
 {% endblock %}
