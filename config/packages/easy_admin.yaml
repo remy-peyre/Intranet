@@ -18,7 +18,7 @@ easy_admin:
                     - { property: 'password', type: 'hidden'}
                     - { property: 'roles'}
                     - { property: 'sortRole', type: 'text' }
-                    - { property: 'matieres'}
+                    - { property: 'subjects'}
             list:
                 dql_filter: "entity.sortRole = 'ROLE_STUDENT'"
                 fields:

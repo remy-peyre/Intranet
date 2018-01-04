@@ -10,6 +10,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\MatiereRepository")
+ * @ORM\Table("matiere")
  */
 class Matiere
 {
@@ -41,6 +42,7 @@ class Matiere
      * @ORM\ManyToMany(targetEntity="User", mappedBy="subjects")
      */
     private $students;
+    
      /*
       * Get the value of users
       */

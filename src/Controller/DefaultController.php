@@ -91,8 +91,6 @@ class DefaultController extends Controller
      */
     public function subject(Request $request)
     {
-
-
         return $this->render('index/register-subject.html.twig');
     }
 }
