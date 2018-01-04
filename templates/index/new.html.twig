@@ -2,9 +2,11 @@
 
 {% block body %}
 
+  {% for role in app.user.roles if role == 'ROLE_TEACHER'%}
 
-    {{ form_start(form) }}
-    {{ form_widget(form) }}
-    {{ form_end(form) }}
+      {{ form_start(form) }}
+      {{ form_widget(form) }}
+      {{ form_end(form) }}
 
+    {% endfor %}
 {% endblock %}

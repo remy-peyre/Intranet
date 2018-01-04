@@ -12,6 +12,8 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\HttpFoundation\Response;
 
 class DefaultController extends Controller
 {
@@ -51,10 +53,7 @@ class DefaultController extends Controller
         // just setup a fresh $task object (remove the dummy data)
         $note = new Note();
 
-        $userConnected = $this->get('security.token_storage')->getToken()->getUser();
-
         $form = $this->createFormBuilder($note)
-            ->add('user')
             ->add('note', IntegerType::class)
             ->add('commentaire', TextType::class)
             ->add('matieres' )
@@ -64,9 +63,12 @@ class DefaultController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-          $note = $form->getData();
+            $note = $form->getData();
+
+            $userConnected = $this->get('security.token_storage')->getToken()->getUser();
 
            $em = $this->getDoctrine()->getManager();
+           $note->setUser($userConnected);
            $em->persist($note);
            $em->flush();
 
