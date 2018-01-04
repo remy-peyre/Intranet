@@ -88,6 +88,6 @@ class DefaultController extends Controller
     {
 
 
-        return $this->render('index/new.html.twig');
+        return $this->render('index/register-subject.html.twig');
     }
 }
