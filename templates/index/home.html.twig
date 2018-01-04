@@ -15,18 +15,21 @@
             </div>
         </div>
 
+
         <div class="content_size">
             <div class="all_info">
-                <div class="info_part">
-                    <h3>Toutes les matières</h3>
-                    <div class="show_subject">
-                        {% for toutes  in toutes_matieres %}
-                            <span class="custom_subjects">
-                                {{ toutes }}
-                            </span>
-                        {% endfor %}
+                {% for user  in users if user.sortRole == 'ROLE_STUDENT'%}
+                    <div class="info_part">
+                        <h3>Toutes les matières</h3>
+                        <div class="show_subject">
+                            {% for toutes  in toutes_matieres %}
+                                <span class="custom_subjects">
+                                    {{ toutes }}
+                                </span>
+                            {% endfor %}
+                        </div>
                     </div>
-                </div>
+                {% endfor %}
 
                 <div class="info_part">
                     <h3>Mes matières</h3>
@@ -40,27 +43,56 @@
                 </div>
 
                 <div class="info_part">
-                    <h3>Mes notes</h3>
-                    <div class="show_subject">
-                        <table class="blueTable">
-                            <thead>
-                            <tr>
-                                <th>Matière</th>
-                                <th>Note</th>
-                                <th>Commentaire</th>
-                            </tr>
-                            </thead>
-                            <tbody>
+                    {% for user  in users if user.sortRole == 'ROLE_STUDENT'%}
+                        <h3>Mes notes</h3>
+                        <div class="show_subject">
+                            <table class="blueTable">
+                                <thead>
+                                <tr>
+                                    <th>Matière</th>
+                                    <th>Note</th>
+                                    <th>Commentaire</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    {% for note  in notes %}
+                                        <tr>
+                                            <td>{{ note.matieres.nomMatiere }}</td>
+                                            <td>{{ note.note}}</td>
+                                            <td>{{ note.commentaire }}</td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    {% endfor %}
+                    {% for user  in users if user.sortRole == 'ROLE_TEACHER'%}
+                        <h3>Liste des étudiants inscrit a une matière</h3>
+                        <div class="show_subject">
+                            <table class="blueTable">
+                                <thead>
+                                <tr>
+                                    <th>Matière</th>
+                                    <th>Eleves</th>
+                                </tr>
+                                </thead>
+                                <tbody>
                                 {% for note  in notes %}
                                     <tr>
                                         <td>{{ note.matieres.nomMatiere }}</td>
-                                        <td>{{ note.note}}</td>
-                                        <td>{{ note.commentaire }}</td>
+                                        <td>
+                                            <ul>
+                                                <li>
+                                                    {#{{ les eleves }}#}
+                                                </li>
+                                            </ul>
+                                        </td>
                                     </tr>
                                 {% endfor %}
-                            </tbody>
-                        </table>
-                    </div>
+                                </tbody>
+                            </table>
+                        </div>
+                    {% endfor %}
                 </div>
 
             </div>
