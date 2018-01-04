@@ -24,20 +24,15 @@ class DefaultController extends Controller
 
         $userConnected = $this->get('security.token_storage')->getToken()->getUser();
 
-        //var_dump($userConnected);
-
         $toutesMatiere = $em->getRepository(Matiere::class)->findAll();
 
         $matiere = $em->getRepository(Matiere::class)->findBy(['user' => $userConnected]);
 
         $infoUser = $em->getRepository(User::class)->findBy(['id' => $userConnected]);
 
-
         $note = $em->getRepository(Note::class)->findBy(['user' => $userConnected]);
 
         $matiereProf = $em->getRepository(Matiere::class)->findBy(['user' => $userConnected]);
-
-        //var_dump($matiere);
 
         return $this->render('index/home.html.twig', [
         'matieres' => $matiere,

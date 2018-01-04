@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity
@@ -72,6 +73,35 @@ class User implements UserInterface
      */
     private $notes;
 
+    /**
+     *
+     * @ORM\ManyToMany(targetEntity="Matiere", inversedBy="students", cascade={"persist"})
+     * @ORM\JoinTable(name="subject_user")
+     */
+    private $subjects;
+    /*
+     * Get the value of subjects
+     */
+    public function getSubjects()
+    {
+        return $this->subjects;
+    }
+
+
+    /*
+     * Add students
+     *
+     * @return self
+     */
+    public function addSubject(\App\Entity\Matiere $subject)
+    {
+        $this->subjects[] = $subject;
+        if(!$subject->getStudents()->contains($this)){
+            $subject->addStudent($this);
+        }
+
+        return $this;
+    }
 
     public function __toString()
     {
@@ -86,6 +116,7 @@ class User implements UserInterface
         $this->enabled = false;
         $this->roles = array('ROLE_STUDENT');
         $this->sortRole = "ROLE_STUDENT";
+        $this->subjects = new ArrayCollection();
     }
 
     /**
