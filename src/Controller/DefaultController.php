@@ -54,6 +54,7 @@ class DefaultController extends Controller
         $note = new Note();
 
         $form = $this->createFormBuilder($note)
+            ->add('user')
             ->add('note', IntegerType::class)
             ->add('commentaire', TextType::class)
             ->add('matieres' )
@@ -68,7 +69,6 @@ class DefaultController extends Controller
             $userConnected = $this->get('security.token_storage')->getToken()->getUser();
 
            $em = $this->getDoctrine()->getManager();
-           $note->setUser($userConnected);
            $em->persist($note);
            $em->flush();
 
