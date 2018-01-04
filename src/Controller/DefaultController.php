@@ -79,4 +79,15 @@ class DefaultController extends Controller
             'form' => $form->createView(),
         ));
     }
+
+
+    /**
+     * @Route("/register-subject")
+     */
+    public function registerSubject(Request $request)
+    {
+
+
+        return $this->render('index/new.html.twig');
+    }
 }
