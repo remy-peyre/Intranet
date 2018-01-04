@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity
@@ -34,6 +35,50 @@ class Matiere
      * @ORM\OneToMany(targetEntity="Note", mappedBy="matieres", cascade={"remove","persist"})
      */
     protected $note;
+
+
+    /**
+     * @ORM\ManyToMany(targetEntity="User", mappedBy="subjects")
+     */
+    private $students;
+     /*
+      * Get the value of users
+      */
+     public function getStudents()
+     {
+        return $this->students;
+     }
+
+    /*
+     * Add students
+     *
+     * @return self
+     */
+    public function addStudent(\App\Entity\User $students)
+    {
+        $this->students[] = $students;
+        if(!$students->getSubjects()->contains($this)){
+            $students->addSubject($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * Remove students
+     *
+     * @param \App\Entity\User $students
+     */
+    public function removeStudent(\App\Entity\User $students)
+    {
+        $this->students->removeElement($students);
+        $students->removeSubject($this);
+    }
+
+
+    public function __construct(){
+       $this->students = new ArrayCollection();
+    }
 
     public function __toString()
     {
@@ -113,4 +158,5 @@ class Matiere
 
         return $this;
     }
+
 }
