@@ -107,6 +107,7 @@ table.blueTable tfoot {
     border: 1px solid;
     margin-right: 15px;
     padding: 15px;
+    height: 355px;
 }
 .size_picture_profile{
     width: 100%;
@@ -125,7 +126,19 @@ table.blueTable tfoot {
     display: flex;
     justify-content: center;
 }
-
+.center_average{
+    text-align: center;
+}
+.average{
+    border-radius: 50%;
+    width: 300px;
+    margin-left: 35%;
+    height: 85px;
+}
+.show_average{
+    margin-top: 5px;
+    font-size: 20px;
+}
 /* ------- admin ----------*/
 .button_admin{
     margin-top: 25%;

@@ -98,6 +98,20 @@
                     {% endfor %}
                 </div>
 
+                {% for user  in users if user.sortRole == 'ROLE_STUDENT'%}
+                    <div class="info_part average">
+                        <h3 class="center_average">Ma moyenne</h3>
+                        <div class="center_average show_average">
+                            15
+                        {#{% for matiere  in matieres %}
+                                <span class="custom_subjects">
+                                    {{ matiere }}
+                                </span>
+                            {% endfor %}#}
+                        </div>
+                    </div>
+                {% endfor %}
+
             </div>
 
             <!-- teacher = list student by subject
