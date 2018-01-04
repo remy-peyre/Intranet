@@ -36,12 +36,17 @@ class DefaultController extends Controller
 
         $matiereProf = $em->getRepository(Matiere::class)->findBy(['user' => $userConnected]);
 
+        $userSubjects = $this->getDoctrine()->getRepository(Matiere::class)->findSubjectRegisteredByUser($userConnected);
+
+        var_dump($userSubjects);
+
         return $this->render('index/home.html.twig', [
         'matieres' => $matiere,
         'toutes_matieres' => $toutesMatiere,
         'notes' => $note,
         'matieres_prof' => $matiereProf,
-        'users' => $infoUser
+        'users' => $infoUser,
+        'usersujet' => $userSubjects
         ]);
     }
 
