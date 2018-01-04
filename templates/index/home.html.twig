@@ -34,10 +34,19 @@
                 <div class="info_part">
                     <h3>Mes matières</h3>
                     <div class="show_subject">
-                        {% for matiere  in matieres_prof %}
-                            <span class="custom_subjects">
+                        {% for user  in users if user.sortRole == 'ROLE_STUDENT'%}
+                            {% for matiere  in usersujet %}
+                                <span class="custom_subjects">
                                 {{ matiere }}
                             </span>
+                            {% endfor %}
+                        {% endfor %}
+                        {% for user  in users if user.sortRole == 'ROLE_TEACHER'%}
+                            {% for matiere  in matieres %}
+                                <span class="custom_subjects">
+                                {{ matiere }}
+                            </span>
+                            {% endfor %}
                         {% endfor %}
                     </div>
                 </div>
