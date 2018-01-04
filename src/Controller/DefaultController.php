@@ -38,7 +38,7 @@ class DefaultController extends Controller
 
         $userSubjects = $this->getDoctrine()->getRepository(Matiere::class)->findSubjectRegisteredByUser($userConnected);
 
-        var_dump($userSubjects);
+        //var_dump($userSubjects);
 
         return $this->render('index/home.html.twig', [
         'matieres' => $matiere,
