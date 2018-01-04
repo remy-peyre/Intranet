@@ -1,10 +1,10 @@
 {% extends 'index.html.twig' %}
 
 {% block body %}
-
-
-    {{ form_start(form) }}
-    {{ form_widget(form) }}
-    {{ form_end(form) }}
+    {% if is_granted('ROLE_TEACHER') %}
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        {{ form_end(form) }}
+    {% endif %}
 
 {% endblock %}
