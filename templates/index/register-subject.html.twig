@@ -1,19 +1,23 @@
 {% extends 'index.html.twig' %}
 
 {% block body %}
+<div class="container form_register">
+    <h1 class="title_register">S'inscrire à une matière</h1>
 
-    s'inscrire a une matière
-
-    <form action="{{ path('register_subject') }}" method="post">
-    <select id="idmatiere" name="_idmatiere">
-
-        {% for matiere  in matieres %}
-        <option value="{{ matiere.id }}">
-          {{ matiere.nomMatiere }}
-        </option>
-
-        {% endfor %}
-    </select>
-    <button type="submit">Envoyer</button>
+    <form action="{{ path('register_subject') }}" method="post" class="form_register_subject">
+        <select id="idmatiere" name="_idmatiere" >
+            {% for matiere  in matieres %}
+                <option value="{{ matiere.id }}">
+                    {{ matiere.nomMatiere }}
+                </option>
+            {% endfor %}
+        </select>
+        <button class="button_register" type="submit">Envoyer</button>
     </form>
+    <div style="text-align: right">
+        <a class="back_home" href="{{ path('home') }}">
+            Retour
+        </a>
+    </div>
+</div>
 {% endblock %}

@@ -205,3 +205,11 @@ table.blueTable tfoot {
 .form_login label input{
     color: #0d6aad;
 }
+
+/*---- Custom Select ----*/
+#idmatiere {
+    width: 100%;
+}
+.form_register_subject{
+    text-align: center;
+}
