@@ -94,12 +94,13 @@
                                     <tr>
                                         <td>{{ matiere }}</td>
                                         <td>
-                                            {% for usersujet  in usersujets %}
+                                          {% for etudiant in matiere.GetStudents %}
                                             <ul>
                                                 <li>
-                                                    {{ usersujet.id }}
+                                                  {{ etudiant.username }}
                                                 </li>
                                             </ul>
+
                                             {% endfor %}
                                         </td>
                                 {% endfor %}

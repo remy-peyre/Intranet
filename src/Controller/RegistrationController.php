@@ -11,30 +11,38 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class RegistrationController extends Controller
 {
-    /**
-     * @Route("/register", name="user_registration")
-     */
-    public function registerAction(Request $request, UserPasswordEncoderInterface $passwordEncoder)
-    {
-        $user = new User();
-        $form = $this->createForm(UserType::class, $user);
+  /**
+  * @Route("/register", name="user_registration")
+  */
+  public function registerAction(Request $request, UserPasswordEncoderInterface $passwordEncoder)
+  {
 
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
 
-            $password = $passwordEncoder->encodePassword($user, $user->getPlainPassword());
-            $user->setPassword($password);
+    $user = $this->getUser();
 
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($user);
-            $em->flush();
+    if ($user) {
+      return $this->redirectToRoute('home');
+    } else {
 
-            //return $this->redirectToRoute('/login');
-        }
+      $user = new User();
+      $form = $this->createForm(UserType::class, $user);
 
-        return $this->render(
-            'registration/register.html.twig',
-            array('form' => $form->createView())
-        );
+      $form->handleRequest($request);
+      if ($form->isSubmitted() && $form->isValid()) {
+
+        $password = $passwordEncoder->encodePassword($user, $user->getPlainPassword());
+        $user->setPassword($password);
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($user);
+        $em->flush();
+
+      }
+
+      return $this->render(
+        'registration/register.html.twig',
+        array('form' => $form->createView())
+      );
     }
+  }
 }
