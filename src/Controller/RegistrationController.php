@@ -43,6 +43,7 @@ class RegistrationController extends Controller
         'registration/register.html.twig',
         array('form' => $form->createView())
       );
+
     }
   }
 }

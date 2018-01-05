@@ -3,13 +3,20 @@
 
 
 {% block body %}
-{{ form_start(form) }}
-    {{ form_row(form.username) }}
-    {{ form_row(form.email) }}
-    {{ form_row(form.plainPassword.first) }}
-    {{ form_row(form.plainPassword.second) }}
+    <div class="container form_register">
+        <h1 class="title_register">S'incrire sur l'intranet Interpool</h1>
 
-    <button type="submit">Register!</button>
-{{ form_end(form) }}
-
+        {{ form_start(form) }}
+        {{ form_row(form.username) }}
+        {{ form_row(form.email) }}
+        {{ form_row(form.plainPassword.first) }}
+        {{ form_row(form.plainPassword.second) }}
+        <button class="button_register" type="submit">S'enregistrer</button>
+        {{ form_end(form) }}
+    </div>
+    <div class="deja_inscrit">
+        <a class="deja_inscrit" href="{{ path('login') }}">
+            Déjà inscrit ?
+        </a>
+    </div>
 {% endblock %}

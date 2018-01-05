@@ -143,3 +143,63 @@ table.blueTable tfoot {
 .button_admin{
     margin-top: 25%;
 }
+
+/* ------- register ----------*/
+.title_register{
+    text-align: center;
+    color: #0d6aad;
+}
+.form_register form{
+    background-color: #0d6aad;
+    width: 400px;
+    margin: auto;
+    margin-top: 90px;
+    padding: 20px;
+    border-radius: 1%;
+}
+.form_register form div{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 10px;
+    color: white;
+}
+.form_register form div input{
+    color: #0d6aad;
+    width: 175px;
+}
+.button_register{
+    width: 100%;
+    margin-top: 22px;
+    background-color: white;
+    color: #0d6aad;
+    padding: 5px;
+    font-size: 20px;
+    border-radius: 10px;
+}
+.deja_inscrit {
+    color: red;
+    text-align: center;
+    margin-left: 20%;
+    margin-top: 20px;
+    font-size: 16px;
+}
+.deja_inscrit:hover {
+    color: red;
+    text-decoration: none;
+}
+
+/* ------- login ----------*/
+.form_login{
+    display: flex;
+    flex-direction: column;
+}
+.form_login label{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    color: white;
+}
+.form_login label input{
+    color: #0d6aad;
+}
