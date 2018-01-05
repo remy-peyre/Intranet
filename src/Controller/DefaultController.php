@@ -25,7 +25,7 @@ class DefaultController extends Controller
 
         $user = $this->getUser();
 
-        if($user == null) {
+        if ($user == null) {
             return $this->redirectToRoute("login");
         }
 
@@ -86,7 +86,7 @@ class DefaultController extends Controller
             ->add('user')
             ->add('note', IntegerType::class)
             ->add('commentaire', TextType::class)
-            ->add('matieres' )
+            ->add('matieres')
             ->add('save', SubmitType::class, array('label' => 'Ajouter la note'))
             ->getForm();
 
@@ -97,11 +97,11 @@ class DefaultController extends Controller
 
             $userConnected = $this->get('security.token_storage')->getToken()->getUser();
 
-           $em = $this->getDoctrine()->getManager();
-           $em->persist($note);
-           $em->flush();
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($note);
+            $em->flush();
 
-              return $this->redirectToRoute('home');
+            return $this->redirectToRoute('home');
         }
 
         return $this->render('index/new.html.twig', array(
@@ -126,17 +126,17 @@ class DefaultController extends Controller
 
         if ($request->getMethod() == 'POST') {
             $idsujet = $request->get('_idmatiere');
-            $sub = $repository->findOneBy(['id'=> $idsujet]);
+            $sub = $repository->findOneBy(['id' => $idsujet]);
 
-            if ($sub != null){
+            if ($sub != null) {
                 $user->addSubject($sub);
                 $em->flush();
                 return $this->redirectToRoute('home');
             }
-      }
+        }
 
-      return $this->render('index/register-subject.html.twig', [
-          'matieres' => $toutesMatiere
-      ]);
+        return $this->render('index/register-subject.html.twig', [
+            'matieres' => $toutesMatiere
+        ]);
     }
 }
