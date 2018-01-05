@@ -57,7 +57,7 @@ easy_admin:
             form:  # <-- 'form' is applied to both 'new' and 'edit' views
                 fields:
                     - { property: 'user', label: Etudiant}
-                    - { property: 'note'}
+                    - { property: 'notes'}
                     - { property: 'commentaire', type: 'text'}
                     - { property: 'matieres'}
 
