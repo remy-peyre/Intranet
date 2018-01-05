@@ -162,7 +162,7 @@
         </div>
     {% endfor %}
 
-    {% if is_granted('ROLE_TEACHER') %}
+    {% if is_granted('ROLE_SUPER_ADMIN') %}
         <div class="center_button_add button_admin">
             <a class="add_note" href="{{ path('admin') }}">
                 <button type="button" class="btn btn-primary btn-sm">
