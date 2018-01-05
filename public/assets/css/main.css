@@ -99,7 +99,9 @@ table.blueTable tfoot {
     background: linear-gradient(to bottom, #dcebf7 0%, #d4e6f6 66%, #D0E4F5 100%);
     border-top: 2px solid #444444;
 }
-
+.center{
+    text-align: center;
+}
 .profile{
     display: flex;
     flex-direction: column;

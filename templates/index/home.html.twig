@@ -61,16 +61,16 @@
                             <table class="blueTable">
                                 <thead>
                                 <tr>
-                                    <th>Matière</th>
-                                    <th>Note</th>
-                                    <th>Commentaire</th>
+                                    <th class="center">Matière</th>
+                                    <th class="center">Note</th>
+                                    <th class="center">Commentaire</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                     {% for note  in notes %}
                                         <tr>
-                                            <td>{{ note.matieres.nomMatiere }}</td>
-                                            <td>{{ note.notes}}</td>
+                                            <td class="center">{{ note.matieres.nomMatiere }}</td>
+                                            <td class="center">{{ note.notes}} / 20</td>
                                             <td>{{ note.commentaire }}</td>
                                         </tr>
                                     {% endfor %}
