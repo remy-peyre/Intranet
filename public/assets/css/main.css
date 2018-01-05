@@ -213,3 +213,32 @@ table.blueTable tfoot {
 .form_register_subject{
     text-align: center;
 }
+.form_add form{
+    background-color: #0d6aad;
+    width: 400px;
+    margin: auto;
+    margin-top: 90px;
+    padding: 20px;
+    border-radius: 1%;
+}
+.form_add form div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 10px;
+    color: white;
+ }
+.form_add form div input, .form_add form div select{
+    color: #0d6aad;
+    width: 175px;
+}
+.form_add form div button{
+    width: 100%;
+    margin-top: 22px;
+    background-color: white;
+    color: #0d6aad;
+    padding: 5px;
+    font-size: 20px;
+    border-radius: 10px;
+}
