@@ -188,3 +188,18 @@ table.blueTable tfoot {
     color: red;
     text-decoration: none;
 }
+
+/* ------- login ----------*/
+.form_login{
+    display: flex;
+    flex-direction: column;
+}
+.form_login label{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    color: white;
+}
+.form_login label input{
+    color: #0d6aad;
+}
