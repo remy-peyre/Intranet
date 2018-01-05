@@ -42,7 +42,7 @@ class Matiere
      * @ORM\ManyToMany(targetEntity="User", mappedBy="subjects")
      */
     private $students;
-    
+
      /*
       * Get the value of users
       */
@@ -145,20 +145,6 @@ class Matiere
     public function getNote()
     {
         return $this->note;
-    }
-
-    /**
-     * Set the value of Note
-     *
-     * @param mixed note
-     *
-     * @return self
-     */
-    public function setNote($note)
-    {
-        $this->note = $note;
-
-        return $this;
     }
 
 }

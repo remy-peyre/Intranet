@@ -24,5 +24,5 @@ class MatiereRepository extends ServiceEntityRepository
                 ->setParameter('user', $user)
                 ->getQuery()
                 ->getResult();
-    }
+  }
 }
