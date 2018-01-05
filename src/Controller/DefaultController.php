@@ -22,6 +22,13 @@ class DefaultController extends Controller
      */
     public function index()
     {
+
+        $user = $this->getUser();
+
+        if($user == null) {
+          return $this->redirectToRoute("login");
+        }
+
         $em = $this->getDoctrine()->getEntityManager();
 
         $userConnected = $this->get('security.token_storage')->getToken()->getUser();
@@ -34,17 +41,13 @@ class DefaultController extends Controller
 
         $note = $em->getRepository(Note::class)->findBy(['user' => $userConnected]);
 
-        $matiereProf = $em->getRepository(Matiere::class)->findBy(['user' => $userConnected]);
+        $userSubjects = $this->getDoctrine()->getRepository(Matiere::class)->findSubjectRegisteredByUser($user);
 
-        $userSubjects = $this->getDoctrine()->getRepository(Matiere::class)->findSubjectRegisteredByUser($userConnected);
-
-        //var_dump($userSubjects);
 
         return $this->render('index/home.html.twig', [
         'matieres' => $matiere,
         'toutes_matieres' => $toutesMatiere,
         'notes' => $note,
-        'matieres_prof' => $matiereProf,
         'users' => $infoUser,
         'usersujet' => $userSubjects
         ]);
@@ -91,6 +94,29 @@ class DefaultController extends Controller
      */
     public function subject(Request $request)
     {
-        return $this->render('index/register-subject.html.twig');
+      $em = $this->getDoctrine()->getEntityManager();
+
+      $userConnected = $this->get('security.token_storage')->getToken()->getUser();
+
+      $toutesMatiere = $em->getRepository(Matiere::class)->findAll();
+
+      $repository = $em->getRepository(Matiere::class);
+
+      $user = $this->getUser();
+
+      if ($request->getMethod() == 'POST') {
+        $idsujet = $request->get('_idmatiere');
+        $sub = $repository->findOneBy(['id'=> $idsujet]);
+
+        if ($sub != null){
+          $user->addSubject($sub);
+          $em->flush();
+          return $this->redirectToRoute('home');
+        }
+      }
+
+      return $this->render('index/register-subject.html.twig', [
+      'matieres' => $toutesMatiere
+      ]);
     }
 }

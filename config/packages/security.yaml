@@ -43,4 +43,3 @@ security:
         #- { path: ^/register_subject, role: ROLE_STUDENT }
         - { path: ^/admin, role: ROLE_SUPER_ADMIN }
         - { path: ^/add, role: ROLE_TEACHER }
-
