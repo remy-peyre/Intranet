@@ -26,6 +26,8 @@ class DefaultController extends Controller
 
         $userConnected = $this->get('security.token_storage')->getToken()->getUser();
 
+        //$user = $this->getUser();
+
         $toutesMatiere = $em->getRepository(Matiere::class)->findAll();
 
         $matiere = $em->getRepository(Matiere::class)->findBy(['user' => $userConnected]);
@@ -34,9 +36,23 @@ class DefaultController extends Controller
 
         $note = $em->getRepository(Note::class)->findBy(['user' => $userConnected]);
 
+        $allNotes = $em->getRepository(Note::class)->find('note');
+
         $matiereProf = $em->getRepository(Matiere::class)->findBy(['user' => $userConnected]);
 
         $userSubjects = $this->getDoctrine()->getRepository(Matiere::class)->findSubjectRegisteredByUser($userConnected);
+
+        $oneGrade = $em->getRepository(Note::class)->findBy(['note' => $allNotes]);
+
+        //$average = sum($note) / count($note);
+
+        //dump($allNotes);
+        //die();
+
+        //var_dump(array_sum($note));
+        //var_dump(count($note));
+        //var_dump(intval($note, 0));
+        //var_dump($oneGrade);
 
         //var_dump($userSubjects);
 
@@ -46,7 +62,8 @@ class DefaultController extends Controller
         'notes' => $note,
         'matieres_prof' => $matiereProf,
         'users' => $infoUser,
-        'usersujet' => $userSubjects
+        'usersujets' => $userSubjects,
+        //'averageStudent' => $average
         ]);
     }
 
@@ -84,7 +101,6 @@ class DefaultController extends Controller
             'form' => $form->createView(),
         ));
     }
-
 
     /**
      * @Route("/register_subject", name="register_subject")

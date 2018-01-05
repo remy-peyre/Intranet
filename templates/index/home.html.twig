@@ -35,7 +35,7 @@
                     <h3>Mes matières</h3>
                     <div class="show_subject">
                         {% for user  in users if user.sortRole == 'ROLE_STUDENT'%}
-                            {% for matiere  in usersujet %}
+                            {% for matiere  in usersujets %}
                                 <span class="custom_subjects">
                                 {{ matiere }}
                             </span>
@@ -89,15 +89,17 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                {% for note  in notes %}
+                                {% for matiere  in matieres %}
                                     <tr>
-                                        <td>{{ note.matieres.nomMatiere }}</td>
+                                        <td>{{ matiere }}</td>
                                         <td>
+                                            {% for usersujet  in usersujets %}
                                             <ul>
                                                 <li>
-                                                    {#{{ les eleves }}#}
+                                                    {{ usersujet.id }}
                                                 </li>
                                             </ul>
+                                            {% endfor %}
                                         </td>
                                     </tr>
                                 {% endfor %}
@@ -112,9 +114,9 @@
                         <h3 class="center_average">Ma moyenne</h3>
                         <div class="center_average show_average">
                             15
-                        {#{% for matiere  in matieres %}
+                    {#{% for average  in averageStudent %}
                                 <span class="custom_subjects">
-                                    {{ matiere }}
+                                    {{ averageStudent }}
                                 </span>
                             {% endfor %}#}
                         </div>
