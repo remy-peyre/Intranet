@@ -25,9 +25,9 @@ class Note
     private $user;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="integer")
      */
-    private $note;
+    private $notes;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -82,17 +82,17 @@ class Note
     /**
      * @return mixed
      */
-    public function getNote()
+    public function getNotes()
     {
-        return $this->note;
+        return $this->notes;
     }
 
     /**
      * @param mixed $note
      */
-    public function setNote($note)
+    public function setNotes($notes)
     {
-        $this->note = $note;
+        $this->notes = $notes;
     }
 
     /**
