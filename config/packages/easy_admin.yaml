@@ -54,10 +54,24 @@ easy_admin:
                     - { property: 'notes', label: 'Note' }
                     - { property: 'commentaire', label: 'Commentaire' }
                     - { property: 'matieres', label: 'Matieres' }
-
+            form:  # <-- 'form' is applied to both 'new' and 'edit' views
+                fields:
+                    - { property: 'user', label: Etudiant}
+                    - { property: 'note'}
+                    - { property: 'commentaire', type: 'text'}
+                    - { property: 'matieres'}
 
         Professeurs:
             class: App\Entity\User
             list:
                 dql_filter: "entity.sortRole = 'ROLE_TEACHER'"
                 fields: ['email', 'username','roles', 'matieres']
+            form:  # <-- 'form' is applied to both 'new' and 'edit' views
+                fields:
+                    - { property: 'email', type: 'email'}
+                    - { property: 'username', type: 'text'}
+                    - { property: 'password', type: 'hidden'}
+                    - { property: 'roles'}
+                    - { property: 'sortRole', type: 'text' }
+                    - { property: 'matieres'}
+
