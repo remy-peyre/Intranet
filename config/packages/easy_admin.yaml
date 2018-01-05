@@ -51,7 +51,7 @@ easy_admin:
             list:
                 fields:
                     - { property: 'user', label: 'Etudiant' }
-                    - { property: 'note', label: 'Note' }
+                    - { property: 'notes', label: 'Note' }
                     - { property: 'commentaire', label: 'Commentaire' }
                     - { property: 'matieres', label: 'Matieres' }
 

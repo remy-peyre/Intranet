@@ -43,13 +43,13 @@ class DefaultController extends Controller
 
         $note = $em->getRepository(Note::class)->findBy(['user' => $userConnected]);
 
-        $allNotes = $em->getRepository(Note::class)->find('note');
+        $allNotes = $em->getRepository(Note::class)->find('notes');
 
         $matiereProf = $em->getRepository(Matiere::class)->findBy(['user' => $userConnected]);
 
         $userSubjects = $this->getDoctrine()->getRepository(Matiere::class)->findSubjectRegisteredByUser($userConnected);
 
-        $oneGrade = $em->getRepository(Note::class)->findBy(['note' => $allNotes]);
+        $oneGrade = $em->getRepository(Note::class)->findBy(['notes' => $allNotes]);
 
         //$average = sum($note) / count($note);
 
@@ -84,7 +84,7 @@ class DefaultController extends Controller
 
         $form = $this->createFormBuilder($note)
             ->add('user')
-            ->add('note', IntegerType::class)
+            ->add('notes', IntegerType::class)
             ->add('commentaire', TextType::class)
             ->add('matieres' )
             ->add('save', SubmitType::class, array('label' => 'Ajouter la note'))
