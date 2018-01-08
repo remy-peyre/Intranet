@@ -18,14 +18,9 @@ class SecurityController extends Controller
   */
   public function login(Request $request, AuthenticationUtils $authUtils)
   {
-    $user = $this->getUser();
-
-    if ($user) {
-      return $this->redirectToRoute('home');
-    } else {
 
       $error = $authUtils->getLastAuthenticationError();
-      
+
       $lastUsername = $authUtils->getLastUsername();
 
       return $this->render('login/login.html.twig', array(
@@ -34,5 +29,5 @@ class SecurityController extends Controller
       ));
     }
   }
-}
+
 ?>

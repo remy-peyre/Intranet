@@ -79,21 +79,6 @@ class Note
         $this->user = $user;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getNotes()
-    {
-        return $this->notes;
-    }
-
-    /**
-     * @param mixed $note
-     */
-    public function setNotes($notes)
-    {
-        $this->notes = $notes;
-    }
 
     /**
      * @return mixed
@@ -157,6 +142,31 @@ class Note
     public function setMatieres($matieres)
     {
         $this->matieres = $matieres;
+
+        return $this;
+    }
+
+
+    /**
+     * Get the value of Notes
+     *
+     * @return mixed
+     */
+    public function getNotes()
+    {
+        return $this->notes;
+    }
+
+    /**
+     * Set the value of Notes
+     *
+     * @param mixed notes
+     *
+     * @return self
+     */
+    public function setNotes($notes)
+    {
+        $this->notes = $notes;
 
         return $this;
     }
