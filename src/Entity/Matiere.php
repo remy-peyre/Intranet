@@ -77,7 +77,6 @@ class Matiere
         $students->removeSubject($this);
     }
 
-
     public function __construct(){
        $this->students = new ArrayCollection();
     }
@@ -102,7 +101,6 @@ class Matiere
     {
         $this->id = $id;
     }
-
 
     /**
      * @return mixed
@@ -135,7 +133,6 @@ class Matiere
     {
         $this->nomMatiere = $nomMatiere;
     }
-
 
     /**
      * Get the value of Note

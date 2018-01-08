@@ -35,19 +35,15 @@ class DefaultController extends Controller
 
         $em = $this->getDoctrine()->getEntityManager();
 
-        $userConnected = $this->get('security.token_storage')->getToken()->getUser();
+        $allMatter = $em->getRepository(Matiere::class)->findAll();
 
-        $toutesMatiere = $em->getRepository(Matiere::class)->findAll();
+        $matter = $em->getRepository(Matiere::class)->findBy(['user' => $user]);
 
-        $matiere = $em->getRepository(Matiere::class)->findBy(['user' => $userConnected]);
+        $infoUser = $em->getRepository(User::class)->findBy(['id' => $user]);
 
-        $infoUser = $em->getRepository(User::class)->findBy(['id' => $userConnected]);
-
-        $note = $em->getRepository(Note::class)->findBy(['user' => $userConnected]);
+        $note = $em->getRepository(Note::class)->findBy(['user' => $user]);
 
         $allNotes = $em->getRepository(Note::class)->find('notes');
-
-        $matiereProf = $em->getRepository(Matiere::class)->findBy(['user' => $userConnected]);
 
         $userSubjects = $this->getDoctrine()->getRepository(Matiere::class)->findSubjectRegisteredByUser($user);
 
@@ -62,8 +58,8 @@ class DefaultController extends Controller
         //var_dump($oneGrade);
 
         return $this->render('index/home.html.twig', [
-            'matieres' => $matiere,
-            'toutes_matieres' => $toutesMatiere,
+            'matieres' => $matter,
+            'toutes_matieres' => $allMatter,
             'notes' => $note,
             'users' => $infoUser,
             'usersujets' => $userSubjects,
@@ -76,10 +72,8 @@ class DefaultController extends Controller
      */
     public function new(Request $request)
     {
-
         $user = $this->getUser();
 
-        // just setup a fresh $task object (remove the dummy data)
         $note = new Note();
 
         $form = $this->createFormBuilder($note)
@@ -91,19 +85,15 @@ class DefaultController extends Controller
             ->getForm();
 
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
+
             $note = $form->getData();
-
-            $userConnected = $this->get('security.token_storage')->getToken()->getUser();
-
             $em = $this->getDoctrine()->getManager();
             $em->persist($note);
             $em->flush();
 
             return $this->redirectToRoute('home');
         }
-
         return $this->render('index/new.html.twig', array(
             'form' => $form->createView(),
         ));
@@ -117,12 +107,15 @@ class DefaultController extends Controller
     {
 
         $user = $this->getUser();
+        $error = "";
 
         $em = $this->getDoctrine()->getEntityManager();
 
-        $toutesMatiere = $em->getRepository(Matiere::class)->findAll();
+        $allMatter = $em->getRepository(Matiere::class)->findAll();
 
         $repository = $em->getRepository(Matiere::class);
+
+        $studentsubjects = $user->getSubjects();
 
         if ($request->getMethod() == 'POST') {
             $idsujet = $request->get('_idmatiere');
@@ -132,11 +125,15 @@ class DefaultController extends Controller
                 $user->addSubject($sub);
                 $em->flush();
                 return $this->redirectToRoute('home');
+            }else{
+              $error = "Vous êtes déjà inscrit à toutes les matières";
             }
         }
 
         return $this->render('index/register-subject.html.twig', [
-            'matieres' => $toutesMatiere,
+            'matieres' => $allMatter,
+            'errors' => $error,
+            'students' => $studentsubjects
         ]);
     }
 }

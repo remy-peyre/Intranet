@@ -40,8 +40,6 @@ class Note
      */
     protected $matieres;
 
-
-
     public function __toString()
     {
         return $this->getUser()->getUsername();
@@ -79,7 +77,6 @@ class Note
         $this->user = $user;
     }
 
-
     /**
      * @return mixed
      */
@@ -95,7 +92,6 @@ class Note
     {
         $this->commentaire = $commentaire;
     }
-
 
     /**
      * Get the value of Matiere
@@ -120,7 +116,6 @@ class Note
 
         return $this;
     }
-
 
     /**
      * Get the value of Matieres

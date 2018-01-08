@@ -4,12 +4,19 @@
 <div class="container form_register">
     <h1 class="title_register">S'inscrire à une matière</h1>
 
+    {% if errors %}
+        <div>{{ errors }}</div>
+    {% endif %}
+
     <form action="{{ path('register_subject') }}" method="post" class="form_register_subject">
         <select id="idmatiere" name="_idmatiere" >
             {% for matiere  in matieres %}
+
+              {% if matiere not in students %}
                 <option value="{{ matiere.id }}">
                     {{ matiere.nomMatiere }}
                 </option>
+                {% endif %}
             {% endfor %}
         </select>
         <button class="button_register" type="submit">Envoyer</button>
