@@ -87,7 +87,6 @@ class User implements UserInterface
     return $this->subjects;
   }
 
-
   /*
   * Add students
   *
@@ -134,7 +133,6 @@ class User implements UserInterface
   {
     $this->id = $id;
   }
-
 
   public function getEmail()
   {
@@ -220,8 +218,6 @@ class User implements UserInterface
       $this->addRole($role);
     }
   }
-
-
 
   public function getSalt()
   {
