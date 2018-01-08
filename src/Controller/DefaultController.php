@@ -74,7 +74,6 @@ class DefaultController extends Controller
      */
     public function new(Request $request)
     {
-
         $user = $this->getUser();
 
         $note = new Note();
@@ -110,12 +109,15 @@ class DefaultController extends Controller
     {
 
         $user = $this->getUser();
+        $error = "";
 
         $em = $this->getDoctrine()->getEntityManager();
 
         $allMatter = $em->getRepository(Matiere::class)->findAll();
 
         $repository = $em->getRepository(Matiere::class);
+
+        $studentsubjects = $user->getSubjects();
 
         if ($request->getMethod() == 'POST') {
             $idsujet = $request->get('_idmatiere');
@@ -125,11 +127,15 @@ class DefaultController extends Controller
                 $user->addSubject($sub);
                 $em->flush();
                 return $this->redirectToRoute('home');
+            }else{
+              $error = "Vous êtes déjà inscrit à toutes les matières";
             }
         }
 
         return $this->render('index/register-subject.html.twig', [
             'matieres' => $allMatter,
+            'errors' => $error,
+            'students' => $studentsubjects
         ]);
     }
 }
