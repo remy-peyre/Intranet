@@ -29,6 +29,10 @@ class DefaultController extends Controller
             return $this->redirectToRoute("login");
         }
 
+        if ($user->hasRole('ROLE_SUPER_ADMIN')){
+          return $this->redirectToRoute('easyadmin');
+        }
+
         $em = $this->getDoctrine()->getEntityManager();
 
         $userConnected = $this->get('security.token_storage')->getToken()->getUser();
@@ -113,15 +117,14 @@ class DefaultController extends Controller
      */
     public function subject(Request $request)
     {
-        $em = $this->getDoctrine()->getEntityManager();
 
-        $userConnected = $this->get('security.token_storage')->getToken()->getUser();
+        $user = $this->getUser();
+
+        $em = $this->getDoctrine()->getEntityManager();
 
         $toutesMatiere = $em->getRepository(Matiere::class)->findAll();
 
         $repository = $em->getRepository(Matiere::class);
-
-        $user = $this->getUser();
 
         if ($request->getMethod() == 'POST') {
             $idsujet = $request->get('_idmatiere');
@@ -135,7 +138,7 @@ class DefaultController extends Controller
         }
 
         return $this->render('index/register-subject.html.twig', [
-            'matieres' => $toutesMatiere
+            'matieres' => $toutesMatiere,
         ]);
     }
 }
