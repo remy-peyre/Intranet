@@ -30,7 +30,7 @@ class DefaultController extends Controller
         }
 
         if ($user->hasRole('ROLE_SUPER_ADMIN')){
-          return $this->redirectToRoute('easyadmin');
+          return $this->redirectToRoute('admin');
         }
 
         $em = $this->getDoctrine()->getEntityManager();
