@@ -55,12 +55,10 @@ class DefaultController extends Controller
 
         //$average = sum($note) / count($note);
 
-        //dump($allNotes);
-        //die();
+        //$sumNote = ;
 
         //var_dump(array_sum($note));
-        //var_dump(count($note));
-        //var_dump(intval($note, 0));
+        var_dump(count($note));
         //var_dump($oneGrade);
 
         return $this->render('index/home.html.twig', [
