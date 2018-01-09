@@ -1,6 +1,10 @@
 body {
     background-color: #e0dede;
 }
+.style_error{
+    color: red;
+    text-align: center;
+}
 .navbar_home{
     display: flex;
     justify-content: space-between;
