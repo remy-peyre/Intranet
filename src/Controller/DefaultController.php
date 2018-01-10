@@ -120,6 +120,11 @@ class DefaultController extends Controller
         $studentsubjects = $user->getSubjects();
 
         if ($request->getMethod() == 'POST') {
+            $submittedToken = $request->request->get('token');
+
+            if (!$this->isCsrfTokenValid('register', $submittedToken)) {
+              return $this->redirectToRoute('login');
+            }
             $idsujet = $request->get('_idmatiere');
             $sub = $repository->findOneBy(['id' => $idsujet]);
 
@@ -131,11 +136,10 @@ class DefaultController extends Controller
               $error = "Vous êtes déjà inscrit à toutes les matières";
             }
         }
-
         return $this->render('index/register-subject.html.twig', [
             'matieres' => $allMatter,
             'errors' => $error,
             'students' => $studentsubjects
         ]);
-    }
+      }
 }

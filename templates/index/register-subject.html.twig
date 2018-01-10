@@ -9,6 +9,7 @@
     {% endif %}
 
     <form action="{{ path('register_subject') }}" method="post" class="form_register_subject">
+      <input type="hidden" name="token" value="{{ csrf_token('register') }}" />
         <select id="idmatiere" name="_idmatiere" >
             {% for matiere  in matieres %}
 

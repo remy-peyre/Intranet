@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "a9641bbafe92ced89078483eae02fadb",
+    "content-hash": "6b7a8c43c5d7e98db61d2d223f45f1cd",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -2242,16 +2242,16 @@
         },
         {
             "name": "symfony/form",
-            "version": "v4.0.2",
+            "version": "v4.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/form.git",
-                "reference": "8c8cf3d9981a5ceb841ecef65570a422f3ecff71"
+                "reference": "3ece1a890feba59740bb4a7b990628efb7408b0f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/form/zipball/8c8cf3d9981a5ceb841ecef65570a422f3ecff71",
-                "reference": "8c8cf3d9981a5ceb841ecef65570a422f3ecff71",
+                "url": "https://api.github.com/repos/symfony/form/zipball/3ece1a890feba59740bb4a7b990628efb7408b0f",
+                "reference": "3ece1a890feba59740bb4a7b990628efb7408b0f",
                 "shasum": ""
             },
             "require": {
@@ -2318,7 +2318,7 @@
             ],
             "description": "Symfony Form Component",
             "homepage": "https://symfony.com",
-            "time": "2017-12-14T19:48:22+00:00"
+            "time": "2018-01-03T07:38:00+00:00"
         },
         {
             "name": "symfony/framework-bundle",
@@ -3200,16 +3200,16 @@
         },
         {
             "name": "symfony/security",
-            "version": "v4.0.2",
+            "version": "v4.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/security.git",
-                "reference": "6ff0f1e97f583583c10152e4050e8a4fac2cfd1e"
+                "reference": "dfc0ef20a75b723ab2f20449a7b5dd768800c9e2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/security/zipball/6ff0f1e97f583583c10152e4050e8a4fac2cfd1e",
-                "reference": "6ff0f1e97f583583c10152e4050e8a4fac2cfd1e",
+                "url": "https://api.github.com/repos/symfony/security/zipball/dfc0ef20a75b723ab2f20449a7b5dd768800c9e2",
+                "reference": "dfc0ef20a75b723ab2f20449a7b5dd768800c9e2",
                 "shasum": ""
             },
             "require": {
@@ -3273,7 +3273,7 @@
             ],
             "description": "Symfony Security Component",
             "homepage": "https://symfony.com",
-            "time": "2017-12-14T19:48:22+00:00"
+            "time": "2018-01-03T17:15:19+00:00"
         },
         {
             "name": "symfony/security-bundle",
