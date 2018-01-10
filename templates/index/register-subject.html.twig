@@ -5,7 +5,7 @@
     <h1 class="title_register">S'inscrire à une matière</h1>
 
     {% if errors %}
-        <div>{{ errors }}</div>
+        <div class="style_error">{{ errors }}</div>
     {% endif %}
 
     <form action="{{ path('register_subject') }}" method="post" class="form_register_subject">

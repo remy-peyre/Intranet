@@ -1,6 +1,10 @@
 body {
     background-color: #e0dede;
 }
+.style_error{
+    color: red;
+    text-align: center;
+}
 .navbar_home{
     display: flex;
     justify-content: space-between;
@@ -141,6 +145,14 @@ table.blueTable tfoot {
     margin-top: 5px;
     font-size: 20px;
 }
+.custom_average{
+    padding: 5px;
+    border: none;
+    margin-right: 5px;
+    border-radius: 5px;
+    color: #0d6aad;
+}
+
 /* ------- admin ----------*/
 .button_admin{
     margin-top: 25%;

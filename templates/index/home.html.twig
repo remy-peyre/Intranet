@@ -94,13 +94,12 @@
                                     <tr>
                                         <td>{{ matiere }}</td>
                                         <td>
-                                          {% for etudiant in matiere.GetStudents %}
-                                            <ul>
-                                                <li>
-                                                  {{ etudiant.username }}
-                                                </li>
-                                            </ul>
-
+                                            {% for etudiant in matiere.GetStudents %}
+                                                <ul>
+                                                    <li>
+                                                      {{ etudiant.username }}
+                                                    </li>
+                                                </ul>
                                             {% endfor %}
                                         </td>
                                 {% endfor %}
@@ -114,12 +113,9 @@
                     <div class="info_part average">
                         <h3 class="center_average">Ma moyenne</h3>
                         <div class="center_average show_average">
-                            15
-                    {#{% for average  in averageStudent %}
-                                <span class="custom_subjects">
-                                    {{ averageStudent }}
+                                <span class="custom_average">
+                                    {{ average }}
                                 </span>
-                            {% endfor %}#}
                         </div>
                     </div>
                 {% endfor %}

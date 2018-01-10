@@ -46,18 +46,17 @@ class DefaultController extends Controller
         $allNotes = $em->getRepository(Note::class)->find('notes');
 
         $userSubjects = $this->getDoctrine()->getRepository(Matiere::class)->findSubjectRegisteredByUser($user);
+        
+        $sum = 0;
+        foreach ($note as $mark) {
+            $sum = $sum + $mark->getNotes();
+        }
 
-        $oneGrade = $em->getRepository(Note::class)->findBy(['notes' => $allNotes]);
-
-        //$average = sum($note) / count($note);
-
-        //dump($allNotes);
-        //die();
-
-        //var_dump(array_sum($note));
-        //var_dump(count($note));
-        //var_dump(intval($note, 0));
-        //var_dump($oneGrade);
+        if ($sum != 0) {
+            $average = $sum / count($note);
+        } else {
+            $average = null;
+        }
 
         return $this->render('index/home.html.twig', [
             'matieres' => $matter,
@@ -65,7 +64,7 @@ class DefaultController extends Controller
             'notes' => $note,
             'users' => $infoUser,
             'usersujets' => $userSubjects,
-            //'averageStudent' => $average
+            'average' => $average,
         ]);
     }
 
